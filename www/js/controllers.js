@@ -3,7 +3,7 @@ angular.module('thunder.controllers', ['ionic', 'thunder.services'])
   /*
   Controller for the discover page
   */
-  .controller('DiscoverCtrl', function($scope) {
+  .controller('DiscoverCtrl', function($scope, $timeout) {
     $scope.products = [
       {
         "name": "LinkedIn ProFinder",
@@ -40,11 +40,19 @@ angular.module('thunder.controllers', ['ionic', 'thunder.services'])
 
     // Fired when we favorite or skip a product
     $scope.sendFeedback = function(bool) {
-      // set the current product to one of our three products
-      var randomProduct = Math.round(Math.random() * ($scope.products.length - 1));
 
-      // update the current product in scope
-      $scope.currentProduct = angular.copy($scope.products[randomProduct]);
+      // set the variable for the correct animation sequence
+      $scope.currentProduct.rated = bool;
+      $scope.currentProduct.hide = true;
+
+      // $timeout to allow animation to complete before changing to the next card
+      $timeout(function () {
+        // set the current product to one of our three products
+        var randomProduct = Math.round(Math.random() * ($scope.products.length - 1));
+
+        // update the current product in scope
+        $scope.currentProduct = angular.copy($scope.products[randomProduct]);
+      }, 250);
     }
   })
 
