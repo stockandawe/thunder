@@ -65,6 +65,10 @@ angular.module('thunder.controllers', ['ionic', 'thunder.services'])
   .controller('FavoritesCtrl', function($scope, User) {
     // get list of our favorites from our user service
     $scope.favorites = User.favorites;
+
+    $scope.removeProduct = function(product, index) {
+      User.removeProductFromFavorites(product, index);
+    }
   })
 
   /*

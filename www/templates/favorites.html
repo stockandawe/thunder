@@ -5,6 +5,9 @@
         <img ng-src="{{product.thumbnail}}">
         <h2>{{product.name}}</h2>
         <p>{{product.tagline}}</p>
+        <ion-option-button class="button-assertive"
+        ng-click="removeProduct(product, $index)">
+        <i class="ion-minus-circled"></i>
       </ion-item>
     </ion-list>
   </ion-content>
